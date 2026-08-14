@@ -1,6 +1,6 @@
 ﻿# hungry-snake · 贪吃蛇 🐍
 
-一个纯前端、单文件的贪吃蛇网页游戏，支持多账号注册登录、背景音乐和音效。每个账号可自定义头像和昵称，数据完全独立。无需安装任何依赖，双击即可游玩。
+一个纯前端、单文件的贪吃蛇网页游戏，支持多账号注册登录、背景音乐、音效和 MP3 音乐库。每个账号可自定义头像和昵称，数据完全独立。无需安装任何依赖，双击即可游玩。
 
 - 🎮 在线试玩（最新版）：https://aaaaaaaalh.github.io/hungry-snake/snake-game/
 - 📦 源码仓库：https://github.com/aaaaaaaalh/hungry-snake
@@ -24,7 +24,8 @@
 
 | 版本 | 说明 | 在线地址 |
 | --- | --- | --- |
-| v3.0.0 | 当前最新版：背景音乐 + 音效 | https://aaaaaaaalh.github.io/hungry-snake/versions/v3.0.0/ |
+| v4.0.0 | 当前最新版：MP3 音乐库（公共库 + 私人库） | https://aaaaaaaalh.github.io/hungry-snake/versions/v4.0.0/ |
+| v3.0.0 | 背景音乐 + 音效 | https://aaaaaaaalh.github.io/hungry-snake/versions/v3.0.0/ |
 | v2.0.0 | 账号系统 | https://aaaaaaaalh.github.io/hungry-snake/versions/v2.0.0/ |
 | v1.0.0 | 初始版：基础贪吃蛇 | https://aaaaaaaalh.github.io/hungry-snake/versions/v1.0.0/ |
 
@@ -49,3 +50,4 @@
    ```
 3. 查看战绩 / 切换账号：游戏中点击右上角头像
 4. 开关声音：右上角 🔊 按钮
+5. 自定义音乐：右上角 🎵 打开音乐库，上传 MP3 到公共库或私人库并选用
