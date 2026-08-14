@@ -1,6 +1,6 @@
 ﻿# hungry-snake · 贪吃蛇 🐍
 
-一个纯前端、单文件的贪吃蛇网页游戏，支持多账号注册登录，每个账号可自定义头像和昵称，数据完全独立。无需安装任何依赖，双击即可游玩。
+一个纯前端、单文件的贪吃蛇网页游戏，支持多账号注册登录、背景音乐和音效。每个账号可自定义头像和昵称，数据完全独立。无需安装任何依赖，双击即可游玩。
 
 - 🎮 在线试玩（最新版）：https://aaaaaaaalh.github.io/hungry-snake/snake-game/
 - 📦 源码仓库：https://github.com/aaaaaaaalh/hungry-snake
@@ -11,7 +11,7 @@
 
 | 路径 | 说明 |
 | --- | --- |
-| `snake-game/index.html` | **最新版**游戏代码：界面 + 逻辑都在这个单文件里 |
+| `snake-game/index.html` | **最新版**游戏代码：界面 + 逻辑 + 音效都在这个单文件里 |
 | `snake-game/README.md` | 最新版游戏的操作说明（按键、玩法、账号） |
 | `versions/` | 历史版本存档：每个已发布版本一个文件夹，可独立运行、可在线访问 |
 | `CHANGELOG.md` | 版本变更记录：每个版本相对上一个版本改了什么 |
@@ -24,7 +24,8 @@
 
 | 版本 | 说明 | 在线地址 |
 | --- | --- | --- |
-| v2.0.0 | 当前最新版：账号系统 | https://aaaaaaaalh.github.io/hungry-snake/versions/v2.0.0/ |
+| v3.0.0 | 当前最新版：背景音乐 + 音效 | https://aaaaaaaalh.github.io/hungry-snake/versions/v3.0.0/ |
+| v2.0.0 | 账号系统 | https://aaaaaaaalh.github.io/hungry-snake/versions/v2.0.0/ |
 | v1.0.0 | 初始版：基础贪吃蛇 | https://aaaaaaaalh.github.io/hungry-snake/versions/v1.0.0/ |
 
 ## 版本规则（速览）
@@ -47,3 +48,4 @@
    git push --tags
    ```
 3. 查看战绩 / 切换账号：游戏中点击右上角头像
+4. 开关声音：右上角 🔊 按钮
