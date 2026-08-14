@@ -14,6 +14,7 @@
 ### 技术说明
 - 账号数据保存在浏览器 localStorage 中，密码使用随机盐 + SHA-256 哈希后存储
 - 纯前端实现，无需服务器；账号仅在本机浏览器内有效
+- 部署方式改为 GitHub Pages 分支部署（Source: Deploy from a branch，目录 `/ (root)`），游戏地址为 https://aaaaaaaalh.github.io/hungry-snake/snake-game/，不再使用 GitHub Actions
 
 ## [v1.0.0] - 2026-08-14
 

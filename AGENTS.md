@@ -6,7 +6,7 @@
 
 - 内容：贪吃蛇网页游戏
 - 技术栈：纯前端（HTML + CSS + JavaScript），游戏代码集中在单个 HTML 文件，无构建步骤、无第三方依赖
-- 在线地址：https://aaaaaaaalh.github.io/hungry-snake/
+- 在线地址：https://aaaaaaaalh.github.io/hungry-snake/snake-game/
 
 ## 目录结构
 
@@ -17,7 +17,7 @@
 | `CHANGELOG.md` | 版本变更记录：每个版本相对上一个版本改了什么 |
 | `README.md`（根目录） | 仓库总览与文件索引 |
 | `AGENTS.md` | 本文件：项目约定 |
-| `.github/workflows/pages.yml` | GitHub Actions：push 后自动部署到 GitHub Pages |
+| `.nojekyll`（根目录） | 禁止 Jekyll 处理（Pages 部署必需，勿删） |
 
 ## 版本约定
 
@@ -40,6 +40,8 @@
 
 ## 部署约定
 
-- 代码推送到 `master` 分支后，由 GitHub Actions 自动部署到 GitHub Pages，无需手动操作
-- 部署规则：`snake-game/` 目录内容发布到站点根目录，访问 https://aaaaaaaalh.github.io/hungry-snake/ 直接是游戏
-- 仓库 Pages 设置中的 Source 必须保持为 "GitHub Actions"，不要改成 "Deploy from a branch"
+- 使用 GitHub Pages **分支部署**（Build and deployment → Source: Deploy from a branch），不依赖 GitHub Actions
+- 部署设置：Branch = `master`，目录 = `/ (root)`（GitHub 分支部署仅支持根目录或 /docs）
+- 游戏访问地址：https://aaaaaaaalh.github.io/hungry-snake/snake-game/
+- 每次 push 到 master 后 GitHub 会自动重新构建发布，无需手动操作
+- 根目录的 `.nojekyll` 文件不能删除，用于禁止 Jekyll 干扰静态页面

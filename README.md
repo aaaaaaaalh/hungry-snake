@@ -1,8 +1,8 @@
 ﻿# hungry-snake · 贪吃蛇 🐍
 
-一个纯前端、单文件的贪吃蛇网页游戏，无需安装任何依赖，双击即可游玩。
+一个纯前端、单文件的贪吃蛇网页游戏，支持多账号注册登录，每个账号可自定义头像和昵称，数据完全独立。无需安装任何依赖，双击即可游玩。
 
-- 🎮 在线试玩：https://aaaaaaaalh.github.io/hungry-snake/
+- 🎮 在线试玩：https://aaaaaaaalh.github.io/hungry-snake/snake-game/
 - 📦 源码仓库：https://github.com/aaaaaaaalh/hungry-snake
 - 📝 版本记录：`CHANGELOG.md`
 - 📏 项目约定：`AGENTS.md`（协作者必读）
@@ -12,10 +12,10 @@
 | 路径 | 说明 |
 | --- | --- |
 | `snake-game/index.html` | 游戏全部代码：界面 + 逻辑都在这个单文件里 |
-| `snake-game/README.md` | 最新版游戏的操作说明（按键、玩法） |
+| `snake-game/README.md` | 最新版游戏的操作说明（按键、玩法、账号） |
 | `CHANGELOG.md` | 版本变更记录：每个版本相对上一个版本改了什么 |
 | `AGENTS.md` | 项目约定：版本规则、提交规范、部署规则 |
-| `.github/workflows/pages.yml` | GitHub Actions 工作流：push 后自动发布到 GitHub Pages |
+| `.nojekyll` | 禁止 Jekyll 处理（Pages 部署必需，勿删） |
 
 ## 版本规则（速览）
 
@@ -32,5 +32,6 @@
    cd D:\cheny\Documents\cangku
    git add .
    git commit -m "更新说明"
-   git push            # 自动部署，tag 需额外执行 git push --tags
+   git push            # GitHub Pages 自动重新发布（分支部署）
    ```
+3. 查看战绩 / 切换账号：游戏中点击右上角头像
