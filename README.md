@@ -24,7 +24,8 @@
 
 | 版本 | 说明 | 在线地址 |
 | --- | --- | --- |
-| v4.0.0 | 当前最新版：MP3 音乐库（公共库 + 私人库） | https://aaaaaaaalh.github.io/hungry-snake/versions/v4.0.0/ |
+| v4.0.1 | 当前最新版：修复音乐库面板打不开的问题 | https://aaaaaaaalh.github.io/hungry-snake/versions/v4.0.1/ |
+| v4.0.0 | MP3 音乐库（公共库 + 私人库） | https://aaaaaaaalh.github.io/hungry-snake/versions/v4.0.0/ |
 | v3.0.0 | 背景音乐 + 音效 | https://aaaaaaaalh.github.io/hungry-snake/versions/v3.0.0/ |
 | v2.0.0 | 账号系统 | https://aaaaaaaalh.github.io/hungry-snake/versions/v2.0.0/ |
 | v1.0.0 | 初始版：基础贪吃蛇 | https://aaaaaaaalh.github.io/hungry-snake/versions/v1.0.0/ |
