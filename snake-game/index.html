@@ -6,6 +6,7 @@
 <title>贪吃蛇</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
   html, body { height: 100%; }
   body {
     font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
@@ -24,70 +25,105 @@
     background: rgba(15, 23, 42, 0.75);
     border: 1px solid rgba(148, 163, 184, 0.2);
     border-radius: 20px;
-    padding: 24px 24px 28px;
+    padding: 20px 24px 28px;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
     width: 100%;
     max-width: 520px;
     text-align: center;
   }
-  h1 {
-    font-size: 28px;
-    letter-spacing: 6px;
-    margin-bottom: 16px;
-    color: #4ade80;
-    text-shadow: 0 0 18px rgba(74, 222, 128, 0.45);
+  .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  h1 { font-size: 26px; letter-spacing: 6px; color: #4ade80; text-shadow: 0 0 18px rgba(74, 222, 128, 0.45); }
+  .user-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: #1e293b; border: 1px solid #334155; border-radius: 999px;
+    padding: 4px 12px 4px 6px; cursor: pointer;
+    transition: border-color 0.15s ease;
   }
-  .stats {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 14px;
-    font-size: 16px;
+  .user-chip:hover { border-color: #4ade80; }
+  .chip-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; background: #22c55e;
   }
+  .chip-name { font-size: 13px; color: #e2e8f0; max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 14px; font-size: 16px; }
   .stats b { color: #fbbf24; font-size: 20px; }
-  .board-wrap {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #0b1220;
-    border: 2px solid rgba(74, 222, 128, 0.25);
-    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
-  }
+  .board-wrap { position: relative; border-radius: 12px; overflow: hidden; background: #0b1220; border: 2px solid rgba(74, 222, 128, 0.25); box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6); }
   canvas { display: block; width: 100%; height: auto; touch-action: none; }
-  .hint {
-    margin-top: 14px;
-    font-size: 13px;
-    color: #94a3b8;
-    line-height: 1.8;
-  }
-  .hint kbd {
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 5px;
-    padding: 1px 7px;
-    font-family: inherit;
-    font-size: 12px;
-  }
+  .hint { margin-top: 14px; font-size: 13px; color: #94a3b8; line-height: 1.8; }
+  .hint kbd { background: #1e293b; border: 1px solid #334155; border-radius: 5px; padding: 1px 7px; font-family: inherit; font-size: 12px; }
   .btn {
-    margin-top: 14px;
-    padding: 10px 34px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #052e16;
-    background: linear-gradient(180deg, #4ade80, #22c55e);
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
+    margin-top: 14px; padding: 10px 34px; font-size: 16px; font-weight: 600;
+    color: #052e16; background: linear-gradient(180deg, #4ade80, #22c55e);
+    border: none; border-radius: 999px; cursor: pointer;
     box-shadow: 0 6px 18px rgba(34, 197, 94, 0.4);
     transition: transform 0.12s ease, box-shadow 0.12s ease;
   }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(34, 197, 94, 0.5); }
   .btn:active { transform: translateY(0); }
+  .btn.ghost { background: #1e293b; color: #cbd5e1; box-shadow: none; border: 1px solid #334155; }
+  .btn.ghost:hover { border-color: #4ade80; color: #4ade80; }
+  .btn.danger { background: linear-gradient(180deg, #f87171, #ef4444); color: #fff; box-shadow: 0 6px 18px rgba(239, 68, 68, 0.35); }
+
+  .overlay {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(2, 6, 23, 0.85);
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px; overflow-y: auto;
+  }
+  .panel {
+    background: #0f172a; border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 18px; padding: 24px; width: 100%; max-width: 400px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  }
+  .panel h2 { text-align: center; color: #4ade80; margin-bottom: 14px; font-size: 22px; letter-spacing: 3px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .tab {
+    flex: 1; padding: 8px 0; background: #1e293b; color: #94a3b8;
+    border: 1px solid #334155; border-radius: 10px; cursor: pointer; font-size: 14px;
+  }
+  .tab.active { background: #052e16; color: #4ade80; border-color: #4ade80; }
+  .panel input[type="text"], .panel input[type="password"] {
+    width: 100%; margin-bottom: 10px; padding: 10px 12px;
+    background: #1e293b; color: #e2e8f0; border: 1px solid #334155; border-radius: 10px;
+    font-size: 14px; outline: none;
+  }
+  .panel input:focus { border-color: #4ade80; }
+  .panel input::placeholder { color: #64748b; }
+  .avatar-label { text-align: left; font-size: 13px; color: #94a3b8; margin: 8px 0 6px; }
+  .avatar-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+  .avatar-item, .color-item {
+    aspect-ratio: 1; border-radius: 10px; border: 2px solid #334155;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 20px; background: #1e293b; padding: 0;
+    transition: border-color 0.12s ease, box-shadow 0.12s ease;
+  }
+  .avatar-item:hover, .color-item:hover { border-color: #64748b; }
+  .avatar-item.selected, .color-item.selected { border-color: #4ade80; box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.4); }
+  .custom-row { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
+  .custom-row input { flex: 1; margin-bottom: 0 !important; }
+  .color-row { display: flex; gap: 6px; }
+  .color-item { width: 30px; height: 30px; border-radius: 50%; }
+  .error { color: #f87171; font-size: 13px; text-align: left; min-height: 18px; margin: 2px 0 6px; }
+  .profile-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .big-avatar { width: 56px; height: 56px; border-radius: 50%; font-size: 30px; display: flex; align-items: center; justify-content: center; background: #22c55e; }
+  .profile-nick { font-size: 18px; font-weight: 600; }
+  .profile-user { font-size: 13px; color: #64748b; }
+  .profile-stats { display: flex; justify-content: space-around; background: #1e293b; border-radius: 12px; padding: 10px 0; margin-bottom: 14px; font-size: 13px; color: #94a3b8; }
+  .profile-stats b { display: block; font-size: 18px; color: #fbbf24; margin-top: 2px; }
+  .edit-section { border-top: 1px solid #334155; padding-top: 12px; }
+  .panel .btn { width: 100%; }
 </style>
 </head>
 <body>
 <div class="card">
-  <h1>贪吃蛇</h1>
+  <div class="top">
+    <h1>贪吃蛇</h1>
+    <div class="user-chip" id="userChip" title="打开个人资料" hidden>
+      <span class="chip-avatar" id="chipAvatar">🐍</span>
+      <span class="chip-name" id="chipName">玩家</span>
+    </div>
+  </div>
   <div class="stats">
     <div>得分 <b id="score">0</b></div>
     <div>最高 <b id="best">0</b></div>
@@ -97,23 +133,129 @@
   </div>
   <button class="btn" id="startBtn">开始游戏</button>
   <div class="hint">
-    <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> / <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> 控制方向<br/>
+    <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> / <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> 控制方向 &nbsp;
     <kbd>空格</kbd> 暂停 / 继续 &nbsp; <kbd>R</kbd> 重新开始<br/>
-    手机屏幕滑动即可控制
+    手机滑动控制 · 点击右上角头像可编辑个人资料
+  </div>
+</div>
+
+<div class="overlay" id="authOverlay">
+  <div class="panel">
+    <h2>贪吃蛇</h2>
+    <div class="tabs">
+      <button type="button" class="tab active" id="tabLogin">登录</button>
+      <button type="button" class="tab" id="tabRegister">注册</button>
+    </div>
+    <form id="loginForm">
+      <input id="loginUser" type="text" placeholder="用户名" autocomplete="username" />
+      <input id="loginPass" type="password" placeholder="密码" autocomplete="current-password" />
+      <div class="error" id="loginError"></div>
+      <button type="submit" class="btn">登录</button>
+      <button type="button" class="btn ghost" id="guestBtn">先随便玩玩（游客）</button>
+    </form>
+    <form id="registerForm" hidden>
+      <input id="regUser" type="text" placeholder="用户名：3-20 位字母/数字/下划线" autocomplete="username" />
+      <input id="regNick" type="text" placeholder="昵称（留空则同用户名）" />
+      <input id="regPass" type="password" placeholder="密码（至少 6 位）" autocomplete="new-password" />
+      <input id="regPass2" type="password" placeholder="确认密码" autocomplete="new-password" />
+      <div class="avatar-label">选择头像</div>
+      <div class="avatar-grid" id="regAvatarGrid"></div>
+      <div class="custom-row">
+        <input id="regEmoji" type="text" maxlength="8" placeholder="或输入自定义表情" />
+        <div class="color-row" id="regColorRow"></div>
+      </div>
+      <div class="error" id="regError"></div>
+      <button type="submit" class="btn">注册并开始</button>
+    </form>
+  </div>
+</div>
+
+<div class="overlay" id="profileOverlay" hidden>
+  <div class="panel">
+    <h2>个人资料</h2>
+    <div class="profile-head">
+      <div class="big-avatar" id="bigAvatar">🐍</div>
+      <div>
+        <div class="profile-nick" id="profileNick">昵称</div>
+        <div class="profile-user">@<span id="profileUser">user</span></div>
+      </div>
+    </div>
+    <div class="profile-stats">
+      <div>最高分<b id="pBest">0</b></div>
+      <div>总局数<b id="pGames">0</b></div>
+      <div>总得分<b id="pTotal">0</b></div>
+    </div>
+    <div class="edit-section">
+      <input id="editNick" type="text" placeholder="修改昵称" />
+      <div class="avatar-label">头像</div>
+      <div class="avatar-grid" id="editAvatarGrid"></div>
+      <div class="custom-row">
+        <input id="editEmoji" type="text" maxlength="8" placeholder="或输入自定义表情" />
+        <div class="color-row" id="editColorRow"></div>
+      </div>
+      <div class="error" id="editError"></div>
+      <button type="button" class="btn" id="saveProfileBtn">保存修改</button>
+      <button type="button" class="btn danger" id="logoutBtn">退出登录</button>
+    </div>
   </div>
 </div>
 
 <script>
 (function () {
+  "use strict";
+
   const COLS = 20, ROWS = 20, CELL = 20;
   const BASE_SPEED = 150, MIN_SPEED = 60, SPEED_STEP = 2;
-  const BEST_KEY = "snake-best-score";
+
+  const USERS_KEY = "snake.users.v1";
+  const SESSION_KEY = "snake.session.v1";
+  const GUEST_KEY = "snake.guest.v1";
+  const LEGACY_BEST_KEY = "snake-best-score";
+
+  const AVATAR_EMOJIS = ["🐍", "🦊", "🐱", "🐼", "🐸", "🦁", "🐯", "🐰", "🦉", "🐙", "🦄", "🐢"];
+  const AVATAR_COLORS = ["#ef4444", "#f59e0b", "#22c55e", "#3b82f6", "#8b5cf6", "#ec4899"];
 
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
   const scoreEl = document.getElementById("score");
   const bestEl = document.getElementById("best");
   const startBtn = document.getElementById("startBtn");
+  const userChip = document.getElementById("userChip");
+  const chipAvatar = document.getElementById("chipAvatar");
+  const chipName = document.getElementById("chipName");
+
+  const authOverlay = document.getElementById("authOverlay");
+  const tabLogin = document.getElementById("tabLogin");
+  const tabRegister = document.getElementById("tabRegister");
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const loginUser = document.getElementById("loginUser");
+  const loginPass = document.getElementById("loginPass");
+  const loginError = document.getElementById("loginError");
+  const guestBtn = document.getElementById("guestBtn");
+  const regUser = document.getElementById("regUser");
+  const regNick = document.getElementById("regNick");
+  const regPass = document.getElementById("regPass");
+  const regPass2 = document.getElementById("regPass2");
+  const regEmoji = document.getElementById("regEmoji");
+  const regError = document.getElementById("regError");
+  const regAvatarGrid = document.getElementById("regAvatarGrid");
+  const regColorRow = document.getElementById("regColorRow");
+
+  const profileOverlay = document.getElementById("profileOverlay");
+  const bigAvatar = document.getElementById("bigAvatar");
+  const profileNick = document.getElementById("profileNick");
+  const profileUser = document.getElementById("profileUser");
+  const pBest = document.getElementById("pBest");
+  const pGames = document.getElementById("pGames");
+  const pTotal = document.getElementById("pTotal");
+  const editNick = document.getElementById("editNick");
+  const editEmoji = document.getElementById("editEmoji");
+  const editError = document.getElementById("editError");
+  const editAvatarGrid = document.getElementById("editAvatarGrid");
+  const editColorRow = document.getElementById("editColorRow");
+  const saveProfileBtn = document.getElementById("saveProfileBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
 
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   canvas.width = COLS * CELL * dpr;
@@ -131,10 +273,234 @@
     KeyD: { x: 1, y: 0 },
   };
 
-  let state = "ready"; // ready | running | paused | over
+  let state = "ready";
   let snake, dir, pendingDir, food, score, speed, acc, lastTs;
-  let best = Number(localStorage.getItem(BEST_KEY) || 0);
-  bestEl.textContent = best;
+  let currentUser = null;
+
+  function loadJSON(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function saveJSON(key, val) {
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* ignore */ }
+  }
+
+  function migrateLegacyBest() {
+    const legacy = Number(localStorage.getItem(LEGACY_BEST_KEY) || 0);
+    return { best: legacy > 0 ? legacy : 0, games: 0, totalScore: 0 };
+  }
+
+  let users = loadJSON(USERS_KEY, {});
+  let guestStats = loadJSON(GUEST_KEY, migrateLegacyBest());
+
+  function statsOf() {
+    return currentUser ? users[currentUser].stats : guestStats;
+  }
+
+  function persistStats() {
+    if (currentUser) saveJSON(USERS_KEY, users);
+    else saveJSON(GUEST_KEY, guestStats);
+  }
+
+  function randomSalt() {
+    const arr = new Uint8Array(16);
+    if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(arr);
+    else for (let i = 0; i < arr.length; i++) arr[i] = Math.floor(Math.random() * 256);
+    return Array.from(arr).map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function hashPassword(password, salt) {
+    const data = new TextEncoder().encode(salt + ":" + password);
+    if (window.crypto && crypto.subtle) {
+      const buf = await crypto.subtle.digest("SHA-256", data);
+      return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+    }
+    let h = 0x811c9dc5;
+    for (const b of data) { h ^= b; h = Math.imul(h, 0x01000193); }
+    return "fnv-" + (h >>> 0).toString(16);
+  }
+
+  function buildAvatarPicker(gridEl, colorRowEl, emojiInputEl, getSel, setSel) {
+    gridEl.innerHTML = "";
+    AVATAR_EMOJIS.forEach((em) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "avatar-item";
+      b.textContent = em;
+      b.onclick = () => { setSel(Object.assign({}, getSel(), { emoji: em })); sync(); };
+      gridEl.appendChild(b);
+    });
+    colorRowEl.innerHTML = "";
+    AVATAR_COLORS.forEach((c) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "color-item";
+      b.style.background = c;
+      b.onclick = () => { setSel(Object.assign({}, getSel(), { color: c })); sync(); };
+      colorRowEl.appendChild(b);
+    });
+    emojiInputEl.addEventListener("input", () => {
+      const v = emojiInputEl.value.trim();
+      if (v) setSel(Object.assign({}, getSel(), { emoji: Array.from(v)[0] }));
+      sync();
+    });
+    function sync() {
+      const sel = getSel();
+      Array.from(gridEl.children).forEach((b, i) => {
+        b.classList.toggle("selected", AVATAR_EMOJIS[i] === sel.emoji);
+      });
+      Array.from(colorRowEl.children).forEach((b, i) => {
+        b.classList.toggle("selected", AVATAR_COLORS[i] === sel.color);
+      });
+    }
+  }
+
+  let regSel = { emoji: "🐍", color: "#22c55e" };
+  let editSel = { emoji: "🐍", color: "#22c55e" };
+  buildAvatarPicker(regAvatarGrid, regColorRow, regEmoji, () => regSel, (s) => { regSel = s; });
+  buildAvatarPicker(editAvatarGrid, editColorRow, editEmoji, () => editSel, (s) => { editSel = s; });
+
+  function loginAs(user) {
+    currentUser = user;
+    try { localStorage.setItem(SESSION_KEY, user); } catch (e) { /* ignore */ }
+    authOverlay.hidden = true;
+    profileOverlay.hidden = true;
+    updateChip();
+    resetGameData();
+  }
+
+  function logout() {
+    currentUser = null;
+    try { localStorage.removeItem(SESSION_KEY); } catch (e) { /* ignore */ }
+    profileOverlay.hidden = true;
+    updateChip();
+    resetGameData();
+    authOverlay.hidden = false;
+  }
+
+  function updateChip() {
+    if (currentUser && users[currentUser]) {
+      const p = users[currentUser].profile;
+      userChip.hidden = false;
+      chipAvatar.textContent = p.avatar.emoji || "🐍";
+      chipAvatar.style.background = p.avatar.color || "#22c55e";
+      chipName.textContent = p.nickname || currentUser;
+    } else {
+      userChip.hidden = true;
+    }
+  }
+
+  function openProfile() {
+    if (!currentUser || !users[currentUser]) return;
+    if (state === "running") togglePause();
+    const p = users[currentUser].profile;
+    bigAvatar.textContent = p.avatar.emoji || "🐍";
+    bigAvatar.style.background = p.avatar.color || "#22c55e";
+    profileNick.textContent = p.nickname || currentUser;
+    profileUser.textContent = currentUser;
+    pBest.textContent = users[currentUser].stats.best;
+    pGames.textContent = users[currentUser].stats.games;
+    pTotal.textContent = users[currentUser].stats.totalScore;
+    editNick.value = p.nickname || currentUser;
+    editSel = Object.assign({}, p.avatar);
+    editError.textContent = "";
+    syncPickers();
+    profileOverlay.hidden = false;
+  }
+
+  function syncPickers() {
+    const sync = (gridEl, colorRowEl, sel) => {
+      Array.from(gridEl.children).forEach((b, i) => b.classList.toggle("selected", AVATAR_EMOJIS[i] === sel.emoji));
+      Array.from(colorRowEl.children).forEach((b, i) => b.classList.toggle("selected", AVATAR_COLORS[i] === sel.color));
+    };
+    sync(regAvatarGrid, regColorRow, regSel);
+    sync(editAvatarGrid, editColorRow, editSel);
+  }
+
+  tabLogin.addEventListener("click", () => {
+    loginForm.hidden = false;
+    registerForm.hidden = true;
+    tabLogin.classList.add("active");
+    tabRegister.classList.remove("active");
+    loginError.textContent = "";
+  });
+
+  tabRegister.addEventListener("click", () => {
+    registerForm.hidden = false;
+    loginForm.hidden = true;
+    tabRegister.classList.add("active");
+    tabLogin.classList.remove("active");
+    regError.textContent = "";
+  });
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const user = loginUser.value.trim().toLowerCase();
+    const pass = loginPass.value;
+    loginError.textContent = "";
+    const acc = users[user];
+    if (!acc) { loginError.textContent = "用户名不存在"; return; }
+    const hash = await hashPassword(pass, acc.salt);
+    if (hash !== acc.passHash) { loginError.textContent = "密码错误"; return; }
+    loginAs(user);
+  });
+
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const user = regUser.value.trim().toLowerCase();
+    const nick = regNick.value.trim() || user;
+    const pass = regPass.value;
+    const pass2 = regPass2.value;
+    regError.textContent = "";
+    if (!/^[a-z0-9_]{3,20}$/.test(user)) { regError.textContent = "用户名需为 3-20 位字母、数字或下划线"; return; }
+    if (users[user]) { regError.textContent = "该用户名已被注册"; return; }
+    if (pass.length < 6) { regError.textContent = "密码至少 6 位"; return; }
+    if (pass !== pass2) { regError.textContent = "两次输入的密码不一致"; return; }
+    if (!regSel.emoji) { regError.textContent = "请选择一个头像"; return; }
+    const salt = randomSalt();
+    const passHash = await hashPassword(pass, salt);
+    users[user] = {
+      salt: salt,
+      passHash: passHash,
+      profile: { nickname: nick, avatar: Object.assign({}, regSel) },
+      createdAt: Date.now(),
+      stats: { best: 0, games: 0, totalScore: 0 },
+    };
+    saveJSON(USERS_KEY, users);
+    loginAs(user);
+  });
+
+  guestBtn.addEventListener("click", () => {
+    currentUser = null;
+    try { localStorage.removeItem(SESSION_KEY); } catch (e) { /* ignore */ }
+    authOverlay.hidden = true;
+    updateChip();
+    resetGameData();
+  });
+
+  userChip.addEventListener("click", openProfile);
+
+  profileOverlay.addEventListener("click", (e) => {
+    if (e.target === profileOverlay) profileOverlay.hidden = true;
+  });
+
+  saveProfileBtn.addEventListener("click", () => {
+    if (!currentUser || !users[currentUser]) return;
+    const nick = editNick.value.trim();
+    if (!nick) { editError.textContent = "昵称不能为空"; return; }
+    users[currentUser].profile.nickname = nick;
+    users[currentUser].profile.avatar = Object.assign({}, editSel);
+    saveJSON(USERS_KEY, users);
+    updateChip();
+    profileOverlay.hidden = true;
+  });
+
+  logoutBtn.addEventListener("click", logout);
 
   function reset() {
     snake = [
@@ -150,7 +516,12 @@
     acc = 0;
     lastTs = 0;
     scoreEl.textContent = score;
+    bestEl.textContent = statsOf().best;
     startBtn.textContent = "重新开始";
+  }
+
+  function resetGameData() {
+    reset();
   }
 
   function spawnFood() {
@@ -168,6 +539,17 @@
     if (d.x === -dir.x && d.y === -dir.y) return;
     if (d.x === dir.x && d.y === dir.y) return;
     pendingDir = d;
+  }
+
+  function recordGame() {
+    const st = statsOf();
+    st.games += 1;
+    st.totalScore += score;
+    if (score > st.best) {
+      st.best = score;
+      bestEl.textContent = st.best;
+    }
+    persistStats();
   }
 
   function step() {
@@ -198,25 +580,18 @@
 
   function win() {
     state = "over";
-    saveBest();
+    recordGame();
     draw();
   }
 
   function gameOver() {
     state = "over";
-    saveBest();
+    recordGame();
     draw();
   }
 
-  function saveBest() {
-    if (score > best) {
-      best = score;
-      localStorage.setItem(BEST_KEY, String(best));
-      bestEl.textContent = best;
-    }
-  }
-
   function startGame() {
+    if (!authOverlay.hidden || !profileOverlay.hidden) return;
     reset();
     state = "running";
   }
@@ -318,7 +693,8 @@
         sub = "吃满了整张地图 🏆";
       } else {
         title = "游戏结束";
-        sub = `本局得分 ${score}${score >= best && score > 0 ? " · 新纪录！" : ""}`;
+        const isBest = score >= statsOf().best && score > 0;
+        sub = `本局得分 ${score}${isBest ? " · 新纪录！" : ""}`;
       }
 
       ctx.textAlign = "center";
@@ -348,6 +724,7 @@
   }
 
   window.addEventListener("keydown", (e) => {
+    if (!authOverlay.hidden || !profileOverlay.hidden) return;
     if (DIRS[e.code]) {
       e.preventDefault();
       if (state === "running") setDir(DIRS[e.code]);
@@ -358,6 +735,8 @@
       else if (state === "running" || state === "paused") togglePause();
     } else if (e.code === "KeyR") {
       if (state === "running" || state === "paused" || state === "over") startGame();
+    } else if (e.code === "Escape") {
+      profileOverlay.hidden = true;
     }
   });
 
@@ -384,15 +763,28 @@
     } else {
       setDir({ x: 0, y: dy > 0 ? 1 : -1 });
     }
-    if (state === "ready" || state === "over") startGame();
+    if ((state === "ready" || state === "over") && authOverlay.hidden && profileOverlay.hidden) startGame();
   }, { passive: true });
 
   document.addEventListener("visibilitychange", () => {
     if (document.hidden && state === "running") togglePause();
   });
 
+  const savedUser = (function () {
+    try {
+      const u = localStorage.getItem(SESSION_KEY);
+      return u && users[u] ? u : null;
+    } catch (e) { return null; }
+  })();
+
+  if (savedUser) {
+    currentUser = savedUser;
+    updateChip();
+  } else {
+    authOverlay.hidden = false;
+  }
+
   reset();
-  startBtn.textContent = "开始游戏";
   draw();
   requestAnimationFrame(loop);
 })();
