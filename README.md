@@ -24,7 +24,8 @@
 
 | 版本 | 说明 | 在线地址 |
 | --- | --- | --- |
-| v6.1.0 | 当前最新版：右上角工具栏 + 游客可查历史账号 + 放大操作提示 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.1.0/ |
+| v6.1.1 | 当前最新版：右上角按钮与音量控件放大 2 倍 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.1.1/ |
+| v6.1.0 | 右上角工具栏 + 游客可查历史账号 + 放大操作提示 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.1.0/ |
 | v6.0.0 | 音量滑杆 + 关卡系统 + 账号战绩列表 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.0.0/ |
 | v5.0.0 | 限时奖励 + 虚拟摇杆 + 设备选择 | https://aaaaaaaalh.github.io/hungry-snake/versions/v5.0.0/ |
 | v4.0.1 | 修复音乐库面板打不开的问题 | https://aaaaaaaalh.github.io/hungry-snake/versions/v4.0.1/ |

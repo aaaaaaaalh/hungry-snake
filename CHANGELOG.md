@@ -2,6 +2,17 @@
 
 本项目所有版本变更都会记录在此文件，格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)（主版本.次版本.修订号）。
 
+## [v6.1.1] - 2026-08-16
+
+### 修改
+- 右上角工具栏三个按钮（🎵 音乐库 / 登录注册 / 用户档案）等比例放大 2 倍：内边距、字号、头像、间距全部同步翻倍
+- 右下角音量控件等比例放大 2 倍：图标、滑杆、内边距同步翻倍
+- 手机端同步按 2 倍适配，工具栏允许换行，小屏不会溢出屏幕
+
+### 技术说明
+- 纯 CSS 调整，仅修改 .top-btn / .profile-avatar / .profile-name / .volume-box / .vol-slider 等样式，无逻辑改动
+- 工具栏增加 flex-wrap: wrap + justify-content: flex-end，防止 2 倍尺寸下小屏溢出
+
 ## [v6.1.0] - 2026-08-16
 
 ### 新增
