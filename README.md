@@ -1,6 +1,6 @@
 ﻿# hungry-snake · 贪吃蛇 🐍
 
-一个纯前端、单文件的贪吃蛇网页游戏，支持多账号注册登录、背景音乐、音效、MP3 音乐库、限时奖励和虚拟摇杆。每个账号可自定义头像和昵称、选择电脑/手机设备，数据完全独立。无需安装任何依赖，双击即可游玩。
+一个纯前端、单文件的贪吃蛇网页游戏，支持多账号注册登录、背景音乐、音效、MP3 音乐库、限时奖励、关卡系统和虚拟摇杆。每个账号可自定义头像和昵称、选择电脑/手机设备，数据完全独立。无需安装任何依赖，双击即可游玩。
 
 - 🎮 在线试玩（最新版）：https://aaaaaaaalh.github.io/hungry-snake/snake-game/
 - 📦 源码仓库：https://github.com/aaaaaaaalh/hungry-snake
@@ -24,7 +24,8 @@
 
 | 版本 | 说明 | 在线地址 |
 | --- | --- | --- |
-| v5.0.0 | 当前最新版：限时奖励 + 虚拟摇杆 + 设备选择 | https://aaaaaaaalh.github.io/hungry-snake/versions/v5.0.0/ |
+| v6.0.0 | 当前最新版：音量滑杆 + 关卡系统 + 账号战绩列表 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.0.0/ |
+| v5.0.0 | 限时奖励 + 虚拟摇杆 + 设备选择 | https://aaaaaaaalh.github.io/hungry-snake/versions/v5.0.0/ |
 | v4.0.1 | 修复音乐库面板打不开的问题 | https://aaaaaaaalh.github.io/hungry-snake/versions/v4.0.1/ |
 | v4.0.0 | MP3 音乐库（公共库 + 私人库） | https://aaaaaaaalh.github.io/hungry-snake/versions/v4.0.0/ |
 | v3.0.0 | 背景音乐 + 音效 | https://aaaaaaaalh.github.io/hungry-snake/versions/v3.0.0/ |
@@ -50,6 +51,7 @@
    git tag vX.Y.Z
    git push --tags
    ```
-3. 查看战绩 / 切换账号：游戏中点击右上角头像
-4. 开关声音：右上角 🔊 按钮
-5. 自定义音乐：右上角 🎵 打开音乐库，上传 MP3 到公共库或私人库并选用
+3. 查看战绩 / 账号列表：点击右上角档案大按钮
+4. 调节音量：拖动右下角音量滑杆（拖到 0 即静音）
+5. 自定义音乐：点击档案按钮左侧的 🎵 音乐库，上传 MP3 到公共库或私人库并选用
+6. 关卡系统：达到 100 分可选择进入关卡 2，左下角会出现墙，撞墙即死
