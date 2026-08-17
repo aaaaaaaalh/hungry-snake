@@ -24,7 +24,8 @@
 
 | 版本 | 说明 | 在线地址 |
 | --- | --- | --- |
-| v7.0.0 | 当前最新版：关卡 3 + 地图随关卡变大 + 关卡彩蛋 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.0.0/ |
+| v7.0.1 | 当前最新版：修复 200 分无法进入关卡 3 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.0.1/ |
+| v7.0.0 | 关卡 3 + 地图随关卡变大 + 关卡彩蛋 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.0.0/ |
 | v6.2.0 | 手机端界面瘦身 + 操作提示可关闭 + 修复吃苹果突然死亡 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.2.0/ |
 | v6.1.1 | 右上角按钮与音量控件放大 2 倍 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.1.1/ |
 | v6.1.0 | 右上角工具栏 + 游客可查历史账号 + 放大操作提示 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.1.0/ |
