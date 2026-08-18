@@ -24,7 +24,8 @@
 
 | 版本 | 说明 | 在线地址 |
 | --- | --- | --- |
-| v7.1.0 | 当前最新版：数据导出导入 + 注册合并游客战绩 + PWA 离线 + 安全区适配 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.1.0/ |
+| v7.2.0 | 当前最新版：登录/注册页一键添加到主屏幕 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.2.0/ |
+| v7.1.0 | 数据导出导入 + 注册合并游客战绩 + PWA 离线 + 安全区适配 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.1.0/ |
 | v7.0.1 | 修复 200 分无法进入关卡 3 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.0.1/ |
 | v7.0.0 | 关卡 3 + 地图随关卡变大 + 关卡彩蛋 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.0.0/ |
 | v6.2.0 | 手机端界面瘦身 + 操作提示可关闭 + 修复吃苹果突然死亡 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.2.0/ |

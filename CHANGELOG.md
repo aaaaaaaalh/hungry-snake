@@ -2,6 +2,15 @@
 
 本项目所有版本变更都会记录在此文件，格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)（主版本.次版本.修订号）。
 
+## [v7.2.0] - 2026-08-18
+
+### 新增
+- 登录 / 注册面板底部新增「📱 添加到主屏幕」按钮：安卓 Chrome 点击直接弹出系统安装提示；iPhone Safari 点击弹出图文步骤引导（分享 → 添加到主屏幕），安装完成后按钮自动变为「已添加」
+
+### 技术说明
+- 浏览器不允许网页强制安装 PWA：安卓通过 beforeinstallprompt 拦截系统安装提示后由用户确认；iOS 不支持该事件，只能引导用户走 Safari 分享菜单
+- Service Worker 缓存名升级为 hungry-snake-v7.2.0，发布后自动清理旧版缓存
+
 ## [v7.1.0] - 2026-08-18
 
 ### 新增
