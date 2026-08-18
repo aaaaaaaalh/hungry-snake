@@ -1,6 +1,6 @@
 ﻿# hungry-snake · 贪吃蛇 🐍
 
-一个纯前端、单文件的贪吃蛇网页游戏，支持多账号注册登录、背景音乐、音效、MP3 音乐库、限时奖励、关卡系统和虚拟摇杆。每个账号可自定义头像和昵称、选择电脑/手机设备，数据完全独立。无需安装任何依赖，双击即可游玩。
+一个纯前端、单文件的贪吃蛇网页游戏，支持多账号注册登录、背景音乐、音效、MP3 音乐库、限时奖励、关卡系统、虚拟摇杆、数据导出导入与离线游玩。每个账号可自定义头像和昵称、选择电脑/手机设备，数据完全独立。无需安装任何依赖，双击即可游玩。
 
 - 🎮 在线试玩（最新版）：https://aaaaaaaalh.github.io/hungry-snake/snake-game/
 - 📦 源码仓库：https://github.com/aaaaaaaalh/hungry-snake
@@ -24,7 +24,8 @@
 
 | 版本 | 说明 | 在线地址 |
 | --- | --- | --- |
-| v7.0.1 | 当前最新版：修复 200 分无法进入关卡 3 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.0.1/ |
+| v7.1.0 | 当前最新版：数据导出导入 + 注册合并游客战绩 + PWA 离线 + 安全区适配 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.1.0/ |
+| v7.0.1 | 修复 200 分无法进入关卡 3 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.0.1/ |
 | v7.0.0 | 关卡 3 + 地图随关卡变大 + 关卡彩蛋 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.0.0/ |
 | v6.2.0 | 手机端界面瘦身 + 操作提示可关闭 + 修复吃苹果突然死亡 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.2.0/ |
 | v6.1.1 | 右上角按钮与音量控件放大 2 倍 | https://aaaaaaaalh.github.io/hungry-snake/versions/v6.1.1/ |
@@ -61,3 +62,4 @@
 5. 调节音量：拖动右下角音量滑杆（拖到 0 即静音）
 6. 自定义音乐：点击右上角「🎵 音乐库」，上传 MP3 到公共库或私人库并选用
 7. 关卡系统：达到 100 分可选择进入关卡 2，左下角会出现墙，撞墙即死
+8. 备份 / 恢复：右上角「用户档案」→「数据管理」→ 导出数据 / 导入数据，换设备也能带走账号与音乐库
