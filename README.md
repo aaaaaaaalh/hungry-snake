@@ -24,7 +24,8 @@
 
 | 版本 | 说明 | 在线地址 |
 | --- | --- | --- |
-| v7.2.1 | 当前最新版：音乐播放失败原因可见化 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.2.1/ |
+| v8.0.0 | 当前最新版：方向缓冲 + 死亡结算面板 + 手机震动 + 分关卡速度 | https://aaaaaaaalh.github.io/hungry-snake/versions/v8.0.0/ |
+| v7.2.1 | 音乐播放失败原因可见化 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.2.1/ |
 | v7.2.0 | 登录/注册页一键添加到主屏幕 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.2.0/ |
 | v7.1.0 | 数据导出导入 + 注册合并游客战绩 + PWA 离线 + 安全区适配 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.1.0/ |
 | v7.0.1 | 修复 200 分无法进入关卡 3 | https://aaaaaaaalh.github.io/hungry-snake/versions/v7.0.1/ |
